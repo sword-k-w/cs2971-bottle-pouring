@@ -5,7 +5,7 @@ CS2971 具身智能大作业「取瓶量液」仓库（轮式双臂赛道）。�
 ## 协作约定（协作者与 AI 助手都须遵守）
 
 1. **分支隔离**：每人只在个人分支上工作，**禁止直接向 `main` 提交或推送**。分支命名 `<名字缩写>/<主题>`。
-2. **`main` 由 owner（sword-k-w）统一管理**。合并进 `main` 必须从个人分支提 Pull Request，等 sword-k-w 审查合并。
+2. **`main` 由 owner（sword-k-w）统一管理**。合并进 `main` 必须从个人分支提 Pull Request，等 sword-k-w 审查合并；合入统一用 **Squash and merge**（提交信息即 PR 标题，提交体即 PR 描述）。
 3. **AI 助手不得自行写远端**：AI 助手（Claude Code 等）不得自行 commit、push（含 force-push）、创建或合并 PR；必须先展示改动与命令，经使用者明确同意后才能执行。
 4. 提交信息用英文、动词开头、简明（如 `feat: add color-based bottle grasping`）。
 5. 大文件（模型权重、视频、数据集）不入库，放网盘并在仓库内注明下载位置。
@@ -26,6 +26,10 @@ git fetch origin && git merge origin/main
 
 # 推送个人分支
 git push -u origin <name>/<topic>
+
+# 提 PR（合入由 owner 执行，squash and merge）
+gh pr create --base main --fill
+gh pr merge --squash
 ```
 
 ## 关键文件
