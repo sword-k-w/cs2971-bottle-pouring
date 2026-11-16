@@ -18,6 +18,13 @@ CS2971（2026-2027 Fall）具身智能课程大作业 · **轮式双臂赛道**�
 └── wall-x/                        # wall-x 开源全链路框架（git submodule）
 ```
 
+## 协作约定
+
+- 每人只在个人分支上工作（命名 `<名字缩写>/<主题>`），**禁止直接提交到 `main`**。
+- `main` 由 [sword-k-w](https://github.com/sword-k-w) 统一管理：从个人分支提 Pull Request 合并。
+- AI 编码助手（Claude Code 等）在本仓库工作时，请遵循 [CLAUDE.md](CLAUDE.md)（[AGENTS.md](AGENTS.md) 同样指向它）。
+- 模型权重、视频、数据集等大文件不入库，放网盘并在仓库内注明下载位置。
+
 ## wall-x 子模块
 
 wall-x（Apache-2.0）是量子一号配套的开源软件栈，覆盖数据采集、遥操作、VLA 后训练与微调、真机部署、SDK、建图导航与仿真评测：
