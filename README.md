@@ -21,7 +21,7 @@ CS2971（2026-2027 Fall）具身智能课程大作业 · **轮式双臂赛道**�
 ## 协作约定
 
 - 每人只在个人分支上工作（命名 `<名字缩写>/<主题>`），**禁止直接提交到 `main`**。
-- `main` 由 [sword-k-w](https://github.com/sword-k-w) 统一管理：从个人分支提 Pull Request 合并。
+- `main` 由 [sword-k-w](https://github.com/sword-k-w) 统一管理：从个人分支提 Pull Request，统一 **Squash and merge** 合入（提交信息即 PR 标题）。
 - AI 编码助手（Claude Code 等）在本仓库工作时，请遵循 [CLAUDE.md](CLAUDE.md)（[AGENTS.md](AGENTS.md) 同样指向它）。
 - 模型权重、视频、数据集等大文件不入库，放网盘并在仓库内注明下载位置。
 

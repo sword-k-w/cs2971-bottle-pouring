@@ -30,7 +30,7 @@ xelatex main.tex    # 跑两遍，生成引用/页码
 
 - 每人**只编辑自己负责的 section 文件**，不要改动 `main.tex` 与他人的文件；
 - `main.tex`、`README.md` 由 owner（sword-k-w）统一维护；
-- 改动走个人分支，合入 `main` 须提 PR（见仓库根 [CLAUDE.md](../../CLAUDE.md)）；
+- 改动走个人分支，合入 `main` 须提 PR、Squash and merge 合入（见仓库根 [CLAUDE.md](../../CLAUDE.md)）；
 - 提交前保证本地编译通过（无 Error，Overfull 警告尽量处理）；
 - 总页数 ≤4 页，页数预算：01 ≈0.6 页、02 ≈1 页、03 ≈1 页、04 ≈1 页（含标题余量）。
 
