@@ -11,4 +11,21 @@
 % ============================================================
 \section{相关工作}
 
-% TODO: 正文
+本任务同时涉及语言条件操作、轮式双臂协同与精确液体控制，相关研究可分为以下四类。
+
+\textbf{视觉--语言--动作模型与世界模型。}
+RT-2 将机器人动作离散为文本 token，并在网络视觉语言数据和机器人轨迹上联合训练，验证了互联网语义知识向机器人控制的迁移能力\footnote{Brohan et al., \emph{RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control}, CoRL 2023.}。
+OpenVLA 是约 7B 参数的开源 VLA，在 Open X-Embodiment 的约 97 万段真实机器人示范上训练，便于使用少量本体数据进行参数高效微调；但其原始版本采用单帧观测和逐步离散动作解码，控制频率有限\footnote{Kim et al., \emph{OpenVLA: An Open-Source Vision-Language-Action Model}, CoRL 2024.}。
+$\pi_0$ 使用 flow matching 生成连续动作块，并在单臂、双臂和移动平台上验证了灵巧操作能力\footnote{Black et al., \emph{$\pi_0$: A Vision-Language-Action Flow Model for General Robot Control}, RSS 2025.}。
+世界模型通过预测动作后的状态进行规划；DINO-WM 在预训练视觉特征空间中实现目标条件规划，而 WAM 进一步联合建模未来状态与动作。该路线可用于预测液面和液流变化，但仍面临液体数据成本、长时预测误差和推理延迟等问题。
+
+\textbf{大模型智能体。}
+SayCan 将语言模型给出的语义相关性与机器人价值函数估计的技能可执行性结合，用于选择可落地的技能\footnote{Ichter et al., \emph{Do As I Can, Not As I Say: Grounding Language in Robotic Affordances}, CoRL 2022.}。
+Code as Policies 生成调用感知和控制 API 的程序，可利用条件、循环和递归函数组合层次化策略；VoxPoser 则由语言模型构造三维价值图和约束图，再通过模型预测控制生成末端轨迹。此类方法适合解析“颜色+体积”指令并编排抓取、移动、倾倒和归位等技能，但执行效果仍取决于底层技能及安全约束。
+
+\textbf{轮式双臂操作。}
+Mobile ALOHA 通过全身遥操作采集移动双臂示范，并使用行为克隆学习底盘与双臂协同策略\footnote{Fu et al., \emph{Mobile ALOHA: Learning Bimanual Mobile Manipulation using Low-Cost Whole-Body Teleoperation}, CoRL 2024.}。本项目使用的量子一号 Pro 具有两条 6 自由度机械臂、差速底盘、升降腰身及多视角相机，并支持同构主臂和 VR 遥操作采数。针对固定桌面场景，可由底盘到达预标定工作位，再利用视觉修正瓶子和量筒的相对位姿；主操作臂完成抓瓶和倾倒，另一只手臂按需辅助。
+
+\textbf{液体倾倒与 wall-x 生态。}
+视觉闭环倾倒通常在线估计液量并反馈调节容器角速度。Schenck 和 Fox 将视觉液量估计与 PID 控制结合；Dong 等依据目标容器点云、液面高度或源容器倾角控制未知容器间的定量倾倒。PourIt! 使用弱监督方法感知流动液体，并以液流到目标容器的距离作为闭环反馈\footnote{Lin et al., \emph{PourIt!: Weakly-Supervised Liquid Perception from a Single Image for Visual Closed-Loop Robotic Pouring}, ICCV 2023.}。这些工作表明，精确量取除机械臂轨迹外，还需处理液流惯性、在途液量和停止超调。
+wall-x 提供 WALL 系列模型的训练、推理、LeRobot 数据准备和评测代码；量子一号 Pro 的机器人 SDK 则负责读取状态并向双臂、夹爪、底盘和腰身下发动作。因而，本项目可采用分层结构：由 Agent 或 VLA 负责指令理解与粗操作，由专用视觉或称重反馈控制器完成精确倾倒。
